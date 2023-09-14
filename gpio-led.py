@@ -1,4 +1,7 @@
 import logging
+import RPi.GPIO as GPIO
+import time
+
 
 import pwnagotchi.plugins as plugins
 from pwnagotchi.ui.components import LabeledValue
@@ -14,7 +17,8 @@ class gpioled(plugins.Plugin):
 
     def __init__(self):
         logging.debug("example plugin created")
-
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(16, GPIO.OUT)
     # called when http://<host>:<port>/plugins/<plugin>/ is called
     # must return a html page
     # IMPORTANT: If you use "POST"s, add a csrf-token (via csrf_token() and render_template_string)
@@ -60,6 +64,9 @@ class gpioled(plugins.Plugin):
         #   agent.run('ble.recon on')
         # or set a custom state
         #   agent.set_bored()
+        GPIO.output(16, GPIO.HIGH)
+        time.sleep(3)
+        GPIO.output(16, GPIO.LOW)
 
     # called when the AI finished loading
     def on_ai_ready(self, agent):
