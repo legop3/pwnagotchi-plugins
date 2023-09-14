@@ -16,3 +16,6 @@ class GpioLed(plugins.Plugin):
 
     def on_loaded(self):
         logging.info("gpio-led plugin loaded")
+    
+    def on_ready(self):
+        logging.info("gpio-led plugin ready")
