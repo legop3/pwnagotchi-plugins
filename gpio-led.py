@@ -15,4 +15,4 @@ class GpioLed(plugins.Plugin):
         self.running = False
 
     def on_loaded(self):
-        logging.info("gpio-led plugin loaded for %s" % self.options['device'])
+        logging.info("gpio-led plugin loaded")
